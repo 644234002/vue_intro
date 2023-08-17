@@ -10,7 +10,7 @@
       </div>
 
       <div class="product-info">
-        <h1> {{ title }} </h1>
+        <h1>  {{title}}  </h1>
         <p> {{ description }} </p>
 
         <!-- Condition rendering (v-if) -->
@@ -52,6 +52,36 @@
 </template>
 
 <script setup>
+
+import {ref, computed} from 'vue'
+
+const product = 'หูฟังไร้สาย Marshall Major IV'
+const brand = 'Marshall'
+const image = ref('./images/major4.webp')
+const description = 'หูฟังจาก Marshall ในรุ่น Major IV เป็นหูฟังไร้สายชนิด on ear รุ่นที่ 4 แล้วครับ โดยในรุ่นนี้จะออกแบบให้สวมใส่สบายมากขึ้น พร้อมแบตเตอรี่ที่สามารถใช้งานได้นานสูงสุดถึง 80 ชั่วโมงเลยทีเดียว'
+const url = 'https://www.marshallheadphones.com'
+const inStock =  true
+const inventory = ref(20)
+const details = ['Wired', 'Wireless']
+const variants = [
+        {id: 239, color: 'Black', image: './images/major4.webp'},
+        {id: 240, color: 'Brown', image: './images/major4.jpg'}
+]
+var cart = ref(0)
+
+function addToCart(){
+    //console.log(cart.value);
+    //console.log(inventory.value)
+    cart.value += 1
+    inventory.value -= 1
+  }
+
+function  updateImage(variantImage) {
+      image.value = variantImage
+      //console.loge(image.value);
+    }
+
+const title=computed (() => brand + '-' + product)    
 
 </script>
 
